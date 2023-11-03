@@ -21,6 +21,8 @@ check_branch_name:
     - 'if [[ ! "$CI_COMMIT_BRANCH" =~ ^(feature|bug|hotfix)\/[A-Z]+-[0-9]+$ ]]; then echo "Error: Invalid branch name"; exit 1; fi'
   only:
     - branches
+  except:
+    - main
 
 stages:          # List of stages for jobs, and their order of execution
   - build
