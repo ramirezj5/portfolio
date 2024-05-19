@@ -1,7 +1,27 @@
 import React from "react";
+import { Carousel } from "@material-tailwind/react";
 
-const Project = () => {
-  return <div>Project</div>;
+const Project = ({ title, description, images, imageClass }) => {
+  return (
+    <div className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10">
+      <h2 className="mt-4 text-2xl font-bold text-white">{title}</h2>
+      <p className="mt-1 text-xl text-gray-300">{description}</p>
+      <p className="mt-1 text-xl text-gray-300">Technologies</p>
+      <p className="mt-1 text-xl text-gray-300">Github</p>
+      <div className=" flex flex-row items-center justify-center ">
+        <Carousel>
+          {images.map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`${title} ${index + 1}`}
+              className={`${imageClass ? imageClass : ""}`}
+            />
+          ))}
+        </Carousel>
+      </div>
+    </div>
+  );
 };
 
 export default Project;
