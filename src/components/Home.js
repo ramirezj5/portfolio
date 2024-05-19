@@ -2,19 +2,19 @@ import React from "react";
 
 const Home = () => {
   return (
-    <section className="bg-gray-900 text-white ">
+    <section className="bg-gray-900 text-white min-h-full">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-lg text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">Hi, I'm Jasmin</h2>
 
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 sm:text-xl text-gray-300">
             I am a passionate software engineer. I specialize in full-stack
             development, with a focus on creating user-friendly web
             applications.
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 pt-16 grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-2">
           <a
             className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
             href="#"

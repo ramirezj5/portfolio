@@ -5,10 +5,10 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-gray-900">
-      <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+      <div className="mx-auto max-w-screen-xl pb-12 lg:px-8">
         <div className="sm:flex sm:justify-between">
-          <p className="text-xs text-gray-500">
-            &copy; 2022. Company Name. All rights reserved.
+          <p className="text-s text-gray-500">
+            Copyright &copy; 2024. Jasmin Ramirez. All rights reserved.
           </p>
           <div className="sm:flex sm:items-center sm:justify-end">
             <ul className="mt-8 flex justify-start gap-6 sm:mt-0 sm:justify-end">
@@ -22,7 +22,7 @@ const Footer = () => {
                   <span className="sr-only">Twitter</span>
 
                   <svg
-                    className="h-6 w-6"
+                    className="h-8 w-8"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -42,7 +42,7 @@ const Footer = () => {
                   <span className="sr-only">GitHub</span>
 
                   <svg
-                    className="h-6 w-6"
+                    className="h-8 w-8"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"

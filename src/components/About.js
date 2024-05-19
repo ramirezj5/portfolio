@@ -5,8 +5,8 @@ import exampleImage from "../assets/img/bitmoji.jpeg";
 
 const About = () => {
   return (
-    <section className="bg-gray-900">
-      <div className="min-h-screen flex flex-row items-center justify-center px-64 space-x-8">
+    <section className="bg-gray-900 min-h-full flex items-center justify-center">
+      <div className=" flex flex-row items-center justify-center px-64 space-x-8">
         <img
           src={exampleImage}
           alt="Example"
@@ -14,7 +14,7 @@ const About = () => {
         />
         <div className="p-8 md:p-12 lg:px-16 lg:py-24">
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
+            <h2 className="text-2xl font-bold text-white md:text-4xl">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit
             </h2>
 
