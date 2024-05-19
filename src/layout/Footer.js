@@ -1,5 +1,3 @@
-// link to linkedIn and github and an @jasmin symbol with date
-
 import React from "react";
 
 const Footer = () => {

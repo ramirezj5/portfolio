@@ -1,214 +1,184 @@
 import React from "react";
+import exampleImage from "../assets/img/bitmoji.jpeg";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const [loopNum, setLoopNum] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState("");
+  const [delta, setDelta] = useState(300 - Math.random() * 100);
+  const [index, setIndex] = useState(1);
+  const toRotate = ["Web Developer", "Software Engineer"];
+  const period = 2000;
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => {
+      clearInterval(ticker);
+    };
+  }, [text]);
+
+  const tick = () => {
+    let i = loopNum % toRotate.length;
+    let fullText = toRotate[i];
+    let updatedText = isDeleting
+      ? fullText.substring(0, text.length - 1)
+      : fullText.substring(0, text.length + 1);
+
+    setText(updatedText);
+
+    if (isDeleting) {
+      setDelta((prevDelta) => prevDelta / 2);
+    }
+
+    if (!isDeleting && updatedText === fullText) {
+      setIsDeleting(true);
+      setIndex((prevIndex) => prevIndex - 1);
+      setDelta(period);
+    } else if (isDeleting && updatedText === "") {
+      setIsDeleting(false);
+      setLoopNum(loopNum + 1);
+      setIndex(1);
+      setDelta(500);
+    } else {
+      setIndex((prevIndex) => prevIndex + 1);
+    }
+  };
   return (
-    <section className="bg-gray-900 text-white min-h-full">
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-        <div className="mx-auto max-w-lg text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">Hi, I'm Jasmin</h2>
+    <>
+      <section className="bg-gray-900 min-h-full flex flex-col items-center justify-center">
+        <div className=" flex flex-row items-center justify-center px-64 space-x-8">
+          <img
+            src={exampleImage}
+            alt="Example"
+            className="w-72 h-96 rounded-full"
+          />
+          <div className="p-8 md:p-12 lg:px-16 lg:py-24">
+            <div className="mx-auto max-w-xl text-left ltr:sm:text-left rtl:sm:text-right">
+              <h1 className="text-7xl font-bold text-white pb-8">
+                {`Hi! I'm Jasmin`}{" "}
+                <span className="txt-rotate" dataPeriod="1000">
+                  <span className="wrap">{text}</span>
+                </span>
+              </h1>
 
-          <p className="mt-4 sm:text-xl text-gray-300">
-            I am a passionate software engineer. I specialize in full-stack
-            development, with a focus on creating user-friendly web
-            applications.
-          </p>
+              <p className="mt-4 sm:text-xl text-gray-300">
+                I am a passionate software engineer from New York. I specialize
+                in full-stack development, with a focus on creating
+                user-friendly web applications. I am passionate about exploring
+                new technologies through side projects, constantly enhancing my
+                skill set. I enjoy playing volleyball, going to the gym, and
+                reading in my free time.
+              </p>
+            </div>
+          </div>
         </div>
+        <div className="flex flex-row items-center justify-center px-64 space-x-8 bg-gray-900  rounded-lg">
+          <div className=" p-8 md:p-12 lg:px-16 lg:py-24">
+            <div className="mx-auto ltr:sm:text-left rtl:sm:text-right">
+              <h2 className="text-2xl font-bold text-white md:text-4xl pb-8">
+                Technical Skills
+              </h2>
+              <div className="flex flex-row space-x-40">
+                <article className=" rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
+                  <div className="rounded-[10px] bg-white p-4  sm:p-6">
+                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+                      Programming Languages
+                    </h3>
 
-        <div className="mt-8 pt-16 grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-2">
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
+                    <div className="mt-4 flex flex-wrap gap-1 max-w-64">
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        JavaScript
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        TypeScript
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        HTML
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        CSS
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Java
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Python
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        C#
+                      </span>
+                    </div>
+                  </div>
+                </article>
 
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
+                <article className=" rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
+                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
+                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+                      Frameworks/Libraries
+                    </h3>
 
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
-
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
-
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
-
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
-
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
-
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
-
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
-
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
-
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
-
-          <a
-            className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-            href="#"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-10 text-pink-500"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-              />
-            </svg>
-
-            <h2 className="mt-4 text-xl font-bold text-white">
-              Digital campaigns
-            </h2>
-
-            <p className="mt-1 text-sm text-gray-300">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo
-              possimus adipisci distinctio alias voluptatum blanditiis
-              laudantium.
-            </p>
-          </a>
+                    <div className="mt-4 flex flex-wrap gap-1 max-w-64">
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Angular
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        React
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        React Native
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        .NET
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Jasmine
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Cypress
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        NgRx
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        RxJS
+                      </span>
+                    </div>
+                  </div>
+                </article>
+                <article className=" rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
+                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
+                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
+                      Tools
+                    </h3>
+                    <div className="mt-4 flex flex-wrap gap-1">
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Figma
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Jira
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Kibana
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        Git
+                      </span>
+                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+                        ServiceNow
+                      </span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
