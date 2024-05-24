@@ -17,21 +17,27 @@ const Projects = () => {
       description:
         "Recruiters can easily post, edit, and manage job openings, ensuring that positions are always up-to-date. Developers can browse through a curated list of job opportunities to find the perfect fit for their next career move.",
       images: [exampleImage, exampleImage2, exampleImage3],
+      technologies: "TypeScript, JavaScript, HTML, CSS",
+      githubLink: "https://github.com/ramirezj5/react-jobs",
     },
     {
       id: 2,
       title: "Amazon Clone",
       description:
-        "Recruiters can easily post, edit, and manage job openings, ensuring that positions are always up-to-date. Developers can browse through a curated list of job opportunities to find the perfect fit for their next career move.",
+        "An e-commerce platform designed to replicate the seamless shopping experience of the world’s largest online retailer, Amazon.",
       images: [amazonClone1, amazonClone2, amazonClone3],
+      technologies: "JavaScript, HTML, CSS, Firebase",
+      githubLink: "https://github.com/ramirezj5/amazon-clone",
     },
     {
       id: 3,
       title: "Calculator App",
       description:
-        "Recruiters can easily post, edit, and manage job openings, ensuring that positions are always up-to-date. Developers can browse through a curated list of job opportunities to find the perfect fit for their next career move.",
+        "A tool for all your number-crunching needs. Whether you're solving math problems or figuring out how much to tip after a great meal, this app has got you covered.",
       images: [calculator1, calculator2],
       imageClass: "w-1/4 h-1/4",
+      technologies: "Swift",
+      githubLink: "https://github.com/ramirezj5/TipCalculator",
     },
   ];
 
@@ -47,6 +53,8 @@ const Projects = () => {
               description={project.description}
               images={project.images}
               imageClass={project.imageClass}
+              technologies={project.technologies}
+              githubLink={project.githubLink}
             />
           ))}
         </div>
