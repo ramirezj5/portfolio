@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const formData = require("form-data");
 const Mailgun = require("mailgun.js");
+const path = require("path");
 
 dotenv.config();
 
@@ -39,6 +40,14 @@ app.post("/api/email", (req, res) => {
       console.error(error);
       res.status(500).send({ message: "Error in sending message" });
     });
+});
+
+// Serve static files from the 'build' directory
+app.use(express.static(path.join(__dirname, "build")));
+
+// Handle all other routes by serving the React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const port = process.env.PORT || 4000;
