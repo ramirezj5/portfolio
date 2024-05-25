@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Contact = () => {
+  const [emailData, setEmailData] = useState({
+    from: "",
+    subject: "",
+    text: "",
+  });
+
+  const handleChange = (e) => {
+    setEmailData({
+      ...emailData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.post("/api/email", emailData);
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send message.");
+    }
+  };
+
   return (
     <section className="bg-gray-900 min-h-full flex items-center justify-center">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -60,7 +86,7 @@ const Contact = () => {
           </div>
 
           <div className="rounded-lg bg-gray-900 p-8 shadow-lg lg:col-span-3 lg:p-12">
-            <form action="#" className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label className="sr-only" htmlFor="name">
                   Name
@@ -69,7 +95,11 @@ const Contact = () => {
                   className="w-full rounded-lg border-gray-200 p-3 text-sm"
                   placeholder="Name"
                   type="text"
-                  id="name"
+                  id="subject"
+                  name="subject"
+                  value={emailData.subject}
+                  onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -81,7 +111,11 @@ const Contact = () => {
                   className="w-full rounded-lg border-gray-200 p-3 text-sm"
                   placeholder="Email address"
                   type="email"
-                  id="email"
+                  id="from"
+                  name="from"
+                  value={emailData.from}
+                  onChange={handleChange}
+                  required
                 />
               </div>
 
@@ -94,7 +128,11 @@ const Contact = () => {
                   className="w-full rounded-lg border-gray-200 p-3 text-sm"
                   placeholder="Message"
                   rows="8"
-                  id="message"
+                  id="text"
+                  name="text"
+                  value={emailData.text}
+                  onChange={handleChange}
+                  required
                 ></textarea>
               </div>
 

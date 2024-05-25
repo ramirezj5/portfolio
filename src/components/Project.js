@@ -20,6 +20,7 @@ const Project = ({
       <a
         className="mt-1 text-xl text-gray-300 inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
         href={githubLink}
+        rel="noreferrer"
         target="_blank"
       >
         Github Repository
