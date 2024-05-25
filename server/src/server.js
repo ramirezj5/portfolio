@@ -43,11 +43,11 @@ app.post("/api/email", (req, res) => {
 });
 
 // Serve static files from the 'build' directory
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "../../build")));
 
 // Handle all other routes by serving the React app
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../../build", "index.html"));
 });
 
 const port = process.env.PORT || 4000;
