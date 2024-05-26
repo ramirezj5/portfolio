@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-gray-900">
-      <div className="mx-auto max-w-screen-xl pb-12 lg:px-8">
+      <div className="mx-auto max-w-screen-xl pb-12 lg:px-8 px-4">
         <div className="sm:flex sm:justify-between">
           <p className="text-s text-gray-500">
             Copyright &copy; 2024. Jasmin Ramirez. All rights reserved.
