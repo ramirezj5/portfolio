@@ -1,9 +1,31 @@
 import React from "react";
 import exampleImage from "../assets/img/bitmoji.jpeg";
 import { useState, useEffect } from "react";
+import SkillsBox from "./SkillsBox";
 
 const Home = () => {
   const [text, setText] = useState("");
+
+  const programmingLanguages = [
+    "JavaScript",
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "Java",
+    "Python",
+    "C#",
+  ];
+  const frameworksLibraries = [
+    "Angular",
+    "React",
+    "React Native",
+    ".NET",
+    "Jasmine",
+    "Cypress",
+    "NgRx",
+    "RxJS",
+  ];
+  const tools = ["Figma", "Jira", "Kibana", "Git", "ServiceNow"];
 
   useEffect(() => {
     const targetText = "Software Engineer";
@@ -58,95 +80,17 @@ const Home = () => {
                 Technical Skills
               </h2>
               <div className="flex flex-col md:flex-row md:space-x-8">
-                <article className="rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
-                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
-                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-                      Programming Languages
-                    </h3>
-                    <div className="mt-4 flex flex-wrap gap-1 max-w-64">
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        JavaScript
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        TypeScript
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        HTML
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        CSS
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Java
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Python
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        C#
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                <SkillsBox
+                  title="Programming Languages"
+                  skills={programmingLanguages}
+                ></SkillsBox>
 
-                <article className="rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
-                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
-                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-                      Frameworks/Libraries
-                    </h3>
-                    <div className="mt-4 flex flex-wrap gap-1 max-w-64">
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Angular
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        React
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        React Native
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        .NET
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Jasmine
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Cypress
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        NgRx
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        RxJS
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                <SkillsBox
+                  title="Frameworks/Libraries"
+                  skills={frameworksLibraries}
+                ></SkillsBox>
 
-                <article className="rounded-xl from-green-300 via-blue-500 to-purple-600 p-0.5 shadow-xl transition hover:bg-[length:400%_400%] hover:shadow-sm hover:[animation-duration:_4s]">
-                  <div className="rounded-[10px] bg-white p-4 sm:p-6">
-                    <h3 className="mt-0.5 text-lg font-medium text-gray-900">
-                      Tools
-                    </h3>
-                    <div className="mt-4 flex flex-wrap gap-1">
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Figma
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Jira
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Kibana
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        Git
-                      </span>
-                      <span className="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
-                        ServiceNow
-                      </span>
-                    </div>
-                  </div>
-                </article>
+                <SkillsBox title="Tools" skills={tools}></SkillsBox>
               </div>
             </div>
           </div>

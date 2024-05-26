@@ -19,6 +19,7 @@ const Projects = () => {
       images: [exampleImage, exampleImage2, exampleImage3],
       technologies: "TypeScript, JavaScript, HTML, CSS",
       githubLink: "https://github.com/ramirezj5/react-jobs",
+      arrowClass: "black",
     },
     {
       id: 2,
@@ -28,6 +29,7 @@ const Projects = () => {
       images: [amazonClone1, amazonClone2, amazonClone3],
       technologies: "JavaScript, HTML, CSS, Firebase",
       githubLink: "https://github.com/ramirezj5/amazon-clone",
+      arrowClass: "black",
     },
     {
       id: 3,
@@ -38,6 +40,7 @@ const Projects = () => {
       imageClass: "w-1/4 h-1/4",
       technologies: "Swift",
       githubLink: "https://github.com/ramirezj5/TipCalculator",
+      arrowClass: "white",
     },
   ];
 
@@ -55,6 +58,7 @@ const Projects = () => {
               imageClass={project.imageClass}
               technologies={project.technologies}
               githubLink={project.githubLink}
+              arrowClass={project.arrowClass}
             />
           ))}
         </div>
